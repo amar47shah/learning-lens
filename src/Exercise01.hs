@@ -9,7 +9,7 @@ import Data.Functor.Identity
 type Lens s t a b = forall f. Functor f => (a -> f b) -> (s -> f t)
 
 _1 :: Lens (a, x) (b, x) a b
-_1 = undefined
+_1 = \k s -> flip (,) (snd s) <$> k (fst s)
 
 view :: Lens s t a b -> s -> a
 view = undefined
