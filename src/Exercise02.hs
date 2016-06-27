@@ -1,0 +1,23 @@
+-- 1. write `traverse'` that would be a list traversal
+-- (without using `traverse`)
+--
+-- 2. generalise `view` the way I generalised `over`.
+-- Try to apply it to `both` or `_Just`.
+-- What happens? When is this `view` useful?
+--
+-- 3. using `Const` and `First`,
+-- write `preview :: Traversal s t a b -> s -> Maybe a`
+-- that extracts the first element a traversal points at
+-- (or nothing if there isn't one)
+--
+-- 4. write `(^..) :: s -> Traversal s t a b -> [a]`
+-- that extracts all values from a traversal
+--
+-- 5. write `filtered :: (a -> Bool) -> Traversal a a a a`
+-- that traverses a value only if it satisfies a condition
+-- (it's useful for stuff like `[1..10] & each . filtered even .~ 0`)
+--
+-- 6. write your own `each` that would work for lists, Maybe,
+-- `(a,a)`, `(a,a,a)`, and `(a,a,a,a)`.
+-- You'll need a type class and a bunch of extensions.
+-- (Don't forget to actually test it.)
