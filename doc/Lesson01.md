@@ -277,10 +277,6 @@ now we still can pass `print` to it if we want, but we can also pass a simple mo
 so, we're getting close, but printing stuff is stupid, we don't want to print anything, we want to just carry the value out.
 and that's where `Const` comes in – you can think of `Const b x` as of an action that carries a “variable” of type `b` inside itself
 
-**amar47shah:**
-hahah i was like, sounded right to me!
-
-**Artyom:**
 the final step is realising that `Monad` is too strong here and reducing it to `Functor`, which requires knowing that `Functor` isn't just a box but can be an action/etc too
 
 that's all for today
