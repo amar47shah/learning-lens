@@ -4,7 +4,7 @@ _June 26, 2016_
 Before we go further, here are standard operator synonyms for `view`, `set`, and `over`
 
 ```
-(^.) = view
+(^.) = flip view
 (.~) = set
 (%~) = over
 ```
@@ -60,15 +60,14 @@ the reason they don't work is that `over` is really fine with _any function that
 
 i.e.
 
-• lenses work with `Identity`
-• `traverse` works with `Identity` too, because `Identity` is `Applicative`
-• however, currently `over` requires a `Lens`, i.e. a function that works with any functor, and `traverse` only works with applicative functors and therefore doesn't fit
+* lenses work with `Identity`
+* `traverse` works with `Identity` too, because `Identity` is `Applicative`
+* however, currently `over` requires a `Lens`, i.e. a function that works with any functor, and `traverse` only works with applicative functors and therefore doesn't fit
 
 here's the most general type of `over`:
 
 ```
-over :: ((a -> Identity b) -> s -> Identity t)
-     -> (a -> b) -> s -> t
+over :: ((a -> Identity b) -> s -> Identity t) -> (a -> b) -> s -> t
 ```
 
 and if you edit the signature of `over` to look like this, you'll find that `over traverse` works
@@ -77,8 +76,8 @@ observation (or more like question) #4: why does `traverse` only work with appli
 
 the answer is 2-part
 
-*a)*
-———
+**a)**
+
 it needs to produce a `f [b]` out of `[a]` even if the list is empty, and with plain functors it's impossible
 
 i.e. functors only provide `fmap` which modifies the innards of an existing functor, but there's no function to wrap something into a functor
@@ -113,8 +112,8 @@ Nothing
 
 `_Just` is impossible to write without `pure`
 
-*b)*
-———
+**b)**
+
 the traversal also needs a way to combine several functors together, and again this is something that non-applicative functors don't provide
 
 let's say you're writing `both`
